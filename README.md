@@ -26,7 +26,7 @@ In this method client must know proxy details.
 
 ![Alt](images/adblock-server-forward.png "Forward Proxy")
 
-Note: There is no gureentee App in your smartphone also follow the proxy which is set in your browser. Refer this [Stackoverflow thread][http://stackoverflow.com/questions/24417242/do-android-proxy-settings-apply-to-all-apps-on-the-device]
+Note: There is no gureentee App in your smartphone also follow the proxy which is set in your browser. Refer this [Stackoverflow thread][so-thread]
 
 ### Transparent Proxy
 
@@ -36,7 +36,7 @@ In this client does not aware of proxy is there in between. So you no need to co
 
 In this you have to route traffic from WiFi router to proxy server then reach the internet.
 
-Note : HTTPS traffic can't be routed via proxy. Refer Man in Middle Attack
+Note : HTTPS traffic can't be routed via proxy. Refer [Man in the Middle Attack][man-in-middle]
 
 #### How I have used in my Home
 
@@ -45,8 +45,8 @@ In my home I used transparent proxy.
 Here is my setup
 
 * Ubuntu 14.04
-* Internet on EthO port (My ISP giving direct fibre connection)
-* WiFi Hotspot in wlan0. Refer setup [wifi hotspot ubuntu][http://ubuntuhandbook.org/index.php/2014/09/3-ways-create-wifi-hotspot-ubuntu/]
+* Internet on Eth0 port (My ISP giving direct fibre connection)
+* WiFi Hotspot in wlan0. Refer setup [wifi hotspot ubuntu][wifi-hotspot-ubuntu]
 
 ![Alt](images/adblock-server-home.png "My Home Setup")
 
@@ -139,3 +139,6 @@ License
 [chrome_proxy]: https://support.google.com/chrome/answer/96815?hl=en
 [android_proxy]: https://adblockplus.org/android-config-samsung-galaxy-s3
 [ubuntu_proxy]: http://www.ubuntugeek.com/how-to-configure-ubuntu-desktop-to-use-your-proxy-server.html
+[man-in-middle]: https://en.wikipedia.org/wiki/Man-in-the-middle_attack
+[wifi-hotspot-ubuntu]: http://ubuntuhandbook.org/index.php/2014/09/3-ways-create-wifi-hotspot-ubuntu/
+[so-thread]: http://stackoverflow.com/questions/24417242/do-android-proxy-settings-apply-to-all-apps-on-the-device
