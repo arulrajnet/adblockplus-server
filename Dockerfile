@@ -18,6 +18,7 @@ COPY ./supervisord/adblock2privoxy-supervisor.conf /opt/supervisor/conf.d/adbloc
 # Add custom privoxy config
 COPY ./privoxy/config /opt/privoxy/config
 COPY ./privoxy/privoxy-blocklist_0.2.sh /opt/privoxy/privoxy-blocklist_0.2.sh
+RUN chmod +x /opt/privoxy/privoxy-blocklist_0.2.sh
 
 # Ports
 EXPOSE 8118
