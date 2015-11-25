@@ -1,0 +1,35 @@
+adblock:
+  image: arulrajnet/adblockplus-server:latest
+  ports:
+    - 8118:8118
+  hostname: adblock
+  cap_add:
+    - NET_ADMIN
+  restart: always  
+  dns:
+    - 8.8.8.8
+    - 9.9.9.9
+
+dnsmasq:
+  image: arulrajnet/dnsmasq:latest
+  ports:
+    - 5353:5353
+  hostname: dnsmasq
+  volumes:
+    - ./dnsmasq/dnsmasq.hosts:/dnsmasq.hosts
+  restart: always
+
+pixelserv:
+  image: nginx:1.9.6
+  ports:
+    - 80:80
+    # - 443:443
+  volumes:
+    - ./pixelserv/nginx.conf:/etc/nginx/nginx.conf
+    # - ./pixelserv/nginx.key:/etc/nginx/ssl/nginx.key
+    # - ./pixelserv/nginx.crt:/etc/nginx/ssl/nginx.crt
+  hostname: pixelserv
+  restart: always
+  dns:
+    - 8.8.8.8
+    - 9.9.9.9

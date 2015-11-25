@@ -1,0 +1,25 @@
+FROM debian:wheezy
+
+MAINTAINER Arulraj Venni <me@arulraj.net>
+
+# Get noninteractive frontend for Debian to avoid some problems:
+#    debconf: unable to initialize frontend: Dialog
+ENV DEBIAN_FRONTEND noninteractive
+
+# Install dnsmasq 
+RUN apt-get update -qq \
+  && apt-get install -y dnsmasq wget \
+  && apt-get clean autoclean \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/{apt,dpkg,cache,log}/* /tmp/* /var/tmp/* \
+
+COPY dnsmasq.conf /etc/
+COPY resolv.dnsmasq.conf /etc/
+
+RUN wget -O /dnsmasq.hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+
+VOLUME /dnsmasq.hosts
+
+EXPOSE 5353
+
+ENTRYPOINT ["/usr/sbin/dnsmasq", "-d"]
