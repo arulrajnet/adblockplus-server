@@ -12,6 +12,6 @@ VOLUME /dnsmasq.hosts
 
 WORKDIR /etc
 
-EXPOSE 5353
+EXPOSE 53
 
 ENTRYPOINT ["/usr/sbin/dnsmasq", "-d"]

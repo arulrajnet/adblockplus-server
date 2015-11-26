@@ -13,7 +13,7 @@ adblock:
 dnsmasq:
   image: arulrajnet/dnsmasq:latest
   ports:
-    - 5353:5353
+    - 5353:53
   hostname: dnsmasq
   volumes:
     - ./dnsmasq/dnsmasq.hosts:/dnsmasq.hosts
