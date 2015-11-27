@@ -7,3 +7,5 @@ DOCKER0_IP=$(ifconfig docker0 | sed -En '\''s/127.0.0.1//;s/.*inet (addr:)?(([0-
 
 # IPtables rule
 iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j DNAT --to $DOCKER0_IP:8118
+iptables -t nat -A OUTPUT -i wlan0 -p udp --dport 53 -j DNAT --to $DOCKER0_IP:53
+iptables -t nat -A OUTPUT -i wlan0 -p tcp --dport 53 -j DNAT --to $DOCKER0_IP:53

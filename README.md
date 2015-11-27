@@ -76,8 +76,6 @@ DOCKER0_IP=$(ifconfig docker0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*
 
 # IPtables rule
 iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 80 -j DNAT --to $DOCKER0_IP:8118
-iptables -t nat -A OUTPUT -i wlan0 -p udp --dport 53 -j DNAT --to $DOCKER0_IP:5353
-iptables -t nat -A OUTPUT -i wlan0 -p tcp --dport 53 -j DNAT --to $DOCKER0_IP:5353
 ```
 
 Make that as executable
@@ -89,6 +87,23 @@ sudo chmod +x /etc/network/if-up.d/adblockplus-privoxy
 * Now restart your machine. 
 * Connect to wifi hotspot from your smartphone. 
 * all your HTTP ads are blocked without any app / extra settings in your phone.
+
+### Using DNS
+
+#### Iptable rule to forward DNS lookup request to dnsmasq docker
+
+```
+iptables -t nat -A OUTPUT -i wlan0 -p udp --dport 53 -j DNAT --to $DOCKER0_IP:53
+iptables -t nat -A OUTPUT -i wlan0 -p tcp --dport 53 -j DNAT --to $DOCKER0_IP:53
+```
+
+#### Validate
+
+```
+dig ads.yahoo.com +short @172.17.42.1
+```
+
+If the response is `0.0.0.0` then its working.
 
 ### Roadmap
 

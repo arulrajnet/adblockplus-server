@@ -13,11 +13,14 @@ adblock:
 dnsmasq:
   image: arulrajnet/dnsmasq:latest
   ports:
-    - 5353:53
+    - "172.17.42.1:53:53/udp"
+    - "172.17.42.1:53:53/tcp"
   hostname: dnsmasq
   volumes:
     - ./dnsmasq/dnsmasq.hosts:/dnsmasq.hosts
   restart: always
+  cap_add:
+    - NET_ADMIN
 
 pixelserv:
   image: nginx:1.9.6
